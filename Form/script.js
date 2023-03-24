@@ -1,7 +1,3 @@
-import firebase from "firebase/app";
-import "firebase/firestore";
-
-// Replace the following config object with the one from your Firebase project settings
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyC4iWtXt3teaioZVncJOIaTlHc_eEIQ4Ps",
