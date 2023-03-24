@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  </head>
+  <body>
+    <div class="container">
+      <h1>Dashboard</h1>
+      <h2>Planilha</h2>
+      <div>
+        {{ data|safe }}
+      </div>
+      <form method="POST" action="{{ url_for('send_emails', filename=filename) }}">
+        <button type="submit" class="btn btn-primary">Enviar e-mails</button>
+      </form>
+    </div>
+  </body>
+</html>
