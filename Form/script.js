@@ -10,14 +10,24 @@ const firebaseConfig = {
   appId: "1:62011812101:web:440ee23f4adf2a9060ef6c",
   measurementId: "G-94DYJ4L7ZM"
 };
+document.addEventListener("DOMContentLoaded", () => {
+  // Initialize Firestore
+  const db = firebase.firestore();
 
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
+  // Add event listener for the form submission
+  const form = document.querySelector("form");
+  form.addEventListener("submit", (event) => submitForm(event, form));
 
-// Initialize Firestore
-const db = firebase.firestore();
+  // Add event listener for the toggle button
+  const toggleButton = document.querySelector(".toggle-button");
+  toggleButton.addEventListener("click", () => {
+    // Your event handler code for the toggle button
+  });
 
-// Error from OpenAI!
+  // Update time slots availability when the page loads
+  updateTimeSlotsAvailability();
+});
+
 async function submitForm(event, form) {
   event.preventDefault();
 
@@ -34,6 +44,7 @@ async function submitForm(event, form) {
   // Update time slots availability
   updateTimeSlotsAvailability();
 }
+
 async function updateTimeSlotsAvailability() {
   const timeSlotSelect = document.getElementById("horario");
 
