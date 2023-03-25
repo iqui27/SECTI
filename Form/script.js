@@ -47,4 +47,3 @@ async function updateTimeSlotsAvailability() {
     }
   }
 }
-#teste
