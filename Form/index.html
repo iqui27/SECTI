@@ -68,7 +68,7 @@
         <!-- Adicione esse novo elemento select para escolher o dia -->
         <select id="dia" name="dia" required>
         <option value="" disabled selected>Selecione o Dia</option>
-        <option value="quinta">Quinta (6 de abril)</option>
+        <option value="quinta">Quinta</option>
         <option value="sexta">Sexta</option>
         <option value="sabado">Sábado</option>
         <option value="domingo">Domingo</option>
@@ -78,17 +78,17 @@
         <div class="horarioTexto">
           <select id="horario" name="horario" required>
             <option value="" disabled selected>Selecione o Horário</option>
-            <option value="10-11">10-11</option>
-            <option value="11-12">11-12</option>
-            <option value="12-13">12-13</option>
-            <option value="13-14">13-14</option>
-            <option value="15-16">15-16</option>
-            <option value="16-17">16-17</option>
-            <option value="17-18">17-18</option>
-            <option value="18-19">18-19</option>
-            <option value="19-20">19-20</option>
-            <option value="20-21">20-21</option>
-            <option value="21-22">21-22</option>
+            <option value="10-11" data-day="all">10-11</option>
+            <option value="11-12" data-day="all">11-12</option>
+            <option value="12-13" data-day="all">12-13</option>
+            <option value="13-14" data-day="all">13-14</option>
+            <option value="15-16" data-day="all">15-16</option>
+            <option value="16-17" data-day="all">16-17</option>
+            <option value="17-18" data-day="not-sunday">17-18</option>
+            <option value="18-19" data-day="not-sunday">18-19</option>
+            <option value="19-20" data-day="not-sunday">19-20</option>
+            <option value="20-21" data-day="not-sunday">20-21</option>
+            <option value="21-22" data-day="not-sunday">21-22</option>
           </select>
 
           <label for="motivo"></label>

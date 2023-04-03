@@ -117,20 +117,27 @@ async function submitForm(event, form) {
 }
 
 async function updateTimeSlotsAvailability() {
-  const daySelect = document.getElementById("dia");
   const timeSlotSelect = document.getElementById("horario");
+  const daySelect = document.getElementById("dia");
+
+  const filterTimeSlots = () => {
+    const selectedDay = daySelect.value;
+    for (const option of timeSlotSelect.options) {
+      if (selectedDay === "domingo" && option.value >= "17-18") {
+        option.style.display = "none";
+      } else {
+        option.style.display = "block";
+      }
+    }
+  };
 
   const loadTimeSlots = async () => {
-    const selectedDay = daySelect.value;
-
     // Fetch booked time slots from Firestore
-    const snapshot = await db.collection("timeSlots").get();
-    const bookedTimeSlots = snapshot.docs
-      .filter((doc) => doc.data().booked)
-      .map((doc) => doc.id);
+    const snapshot = await db.collection("timeSlots").where("booked", "==", true).get();
+    const bookedTimeSlots = snapshot.docs.map((doc) => doc.id);
 
     for (const option of timeSlotSelect.options) {
-      if (bookedTimeSlots.includes(`${selectedDay}-${option.value}`)) {
+      if (bookedTimeSlots.includes(`${daySelect.value}-${option.value}`)) {
         option.disabled = true;
       } else {
         option.disabled = false;
@@ -139,8 +146,12 @@ async function updateTimeSlotsAvailability() {
   };
 
   // Add a listener for when the day is changed
-  daySelect.addEventListener("change", loadTimeSlots);
+  daySelect.addEventListener("change", () => {
+    filterTimeSlots();
+    loadTimeSlots();
+  });
 
   // Load the available time slots when the page is loaded
+  filterTimeSlots();
   loadTimeSlots();
 }
