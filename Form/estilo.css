@@ -103,8 +103,23 @@ h1 {
 
 /* Estilo para o tema escuro */
 .dark-mode h1 {
-  color: white;
+  color: rgb(222, 220, 220);
   text-shadow: 2px 2px 4px rgba(159, 157, 157, 0.3);
+}
+.dark-mode input[type="text"],
+.dark-mode input[type="tel"],
+.dark-mode input[type="email"],
+.dark-mode select#horario,
+.dark-mode textarea#msg {
+  background-color: #c5c5c7;
+  color: #000;
+}
+select{
+  color: #000;
+}
+.dark-mode select{
+  color: #000;
+  font-weight: 500;
 }
 
 .dark-mode input[type="text"]:focus,
@@ -185,7 +200,8 @@ select option:first-child {
   }
 
   input[type="submit"] {
-    font-size: 16px;
-    padding: 10px 20px;
+   
+    font-size: 20px;
+    padding: 10px 30px;
   }
 }

@@ -74,6 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   updateTimeSlotsAvailability();
+  document.getElementById("dia").addEventListener("change", updateTimeSlotsAvailability);
 });
 
 let isSubmitting = false;
@@ -84,7 +85,10 @@ async function submitForm(event, form) {
   
 
   const formData = new FormData(form);
-  const selectedTimeSlot = formData.get("horario");
+  const dia = formData.get("dia"); // Adicione esta linha para obter o dia selecionado
+  // ...
+  const selectedDay = formData.get("dia"); // Adicione esta linha
+  const selectedTimeSlot = `${selectedDay}-${formData.get("horario")}`; // Modifique esta linha para incluir o dia
   await db.collection("timeSlots").doc(selectedTimeSlot).set({ booked: true });
 
   const nome = formData.get("nome");
@@ -96,27 +100,47 @@ async function submitForm(event, form) {
     nome,
     email,
     telefone,
+    dia, // Adicione esta linha para incluir o dia selecionado ao enviar os dados
     horario: selectedTimeSlot,
     motivo,
   });
-
+  
+  // redireciona para a página end.html
+  redirectToEndPage();
+  
+  function redirectToEndPage() {
+    window.location.href = "end.html";
+  }
   form.reset();
   updateTimeSlotsAvailability();
   isSubmitting = false; // Reinicia o valor de isSubmitting ao final do processo
 }
 
 async function updateTimeSlotsAvailability() {
+  const daySelect = document.getElementById("dia");
   const timeSlotSelect = document.getElementById("horario");
 
-  // Fetch booked time slots from Firestore
-  const snapshot = await db.collection("timeSlots").where("booked", "==", true).get();
-  const bookedTimeSlots = snapshot.docs.map((doc) => doc.id);
+  const loadTimeSlots = async () => {
+    const selectedDay = daySelect.value;
 
-  for (const option of timeSlotSelect.options) {
-    if (bookedTimeSlots.includes(option.value)) {
-      option.disabled = true;
+    // Fetch booked time slots from Firestore
+    const snapshot = await db.collection("timeSlots").get();
+    const bookedTimeSlots = snapshot.docs
+      .filter((doc) => doc.data().booked)
+      .map((doc) => doc.id);
+
+    for (const option of timeSlotSelect.options) {
+      if (bookedTimeSlots.includes(`${selectedDay}-${option.value}`)) {
+        option.disabled = true;
+      } else {
+        option.disabled = false;
+      }
     }
-  }
+  };
+
+  // Add a listener for when the day is changed
+  daySelect.addEventListener("change", loadTimeSlots);
+
+  // Load the available time slots when the page is loaded
+  loadTimeSlots();
 }
-
-

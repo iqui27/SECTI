@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parabéns!!!</title>
+    <style>
+    
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+
+      /* CSS reset */
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      /* Typography */
+      body {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 16px;
+        line-height: 1.5;
+        color: #333;
+        background-color: #161616;
+        font-weight: 500;
+      }
+      h1 {
+        font-size: 36px;
+        font-weight: bold;
+        text-align: center;
+        margin-top: 50px;
+        text-transform: uppercase;
+        color: #efeded;
+       
+      }
+      p {
+        font-size: 20px;
+        text-align: center;
+        margin: 20px 0;
+      }
+      /* Layout */
+      .container {
+        max-width: 600px;
+        
+        display:flex;
+        flex-direction: column;
+        align-items:center;
+        justify-content: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        padding: 50px 30px;
+        border-radius: 30% 15%;
+        background-color: #cf4646;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      .marked {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
+  border-radius: 40% 20%;
+  background-color: #000000; /* altera a cor de fundo para verde */
+ 
+}
+.outro{
+  font-size: 1.6rem;
+  font-weight: 600;
+
+}
+@media only screen and (max-width:500px) {
+    .container{
+        width: 100%;
+    }
+}
+html{
+    margin:-10px;
+}
+.marked{
+    margin-top: 20px;
+    background-color: rgb(47, 157, 93);
+}
+.marked svg {
+    
+  width: 60%;
+  height: 60%;
+  fill: #ffefef; /* altera a cor do ícone para branco */
+}
+
+   
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Parabéns!</h1>
+      <p>Você concluiu sua reserva no Palco SECTI.</p>
+      <p class="outro">OBRIGADO!</p>
+      <a href="https://www.secti.df.gov.br/">
+        <div class="marked">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path  d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/>
+          </svg>
+        </div>
+      </a>
+    </div>
+  </body>
+</html>
